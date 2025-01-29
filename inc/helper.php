@@ -1,6 +1,11 @@
 <?php
+
 function validatePostedData($postValues) {
-    $errors = [];
+
+/*This Function Validate On Posted
+  *Data And Case of error Return with errors and case of Validate Return with Null Array */
+  
+ $errors = [];
     $old = [];
 
     foreach ($postValues as $key => $value) {
@@ -48,7 +53,23 @@ function validateOnMail($mail)
 
     return filter_var($mail,FILTER_VALIDATE_EMAIL);
 
-
 }
+
+
+function readData($filename)
+{
+    $customers = file($filename);
+    $validCustomers = [];
+
+    foreach ($customers as $customer) {
+        $customer = trim($customer);
+        if ($customer != "") {
+            $customer = explode(":", $customer);
+            $validCustomers[] = $customer;
+        }
+    }
+    return $validCustomers;
+}
+
 
 ?>
