@@ -3,7 +3,8 @@ require"utils.php";
 require"helper.php";
 $url='Location: addUser.php';
 $postErrorsOld=validatePostedData($_POST);
-print_r($postErrorsOld);
+$img=$_FILES['image'];
+$file_errors=validateOnfile($img,["png","jpg","jpeg"],2000000);
 if(!$postErrorsOld["errors"])
 {
             $email = $_POST['email'];
@@ -12,10 +13,7 @@ if(!$postErrorsOld["errors"])
             $confirmPassword = $_POST['confirmPassword'];
             $room = $_POST['room'];
             $data = "{$name}:{$email}:{$password}:{$confirmPassword}:{$room}\n";
-
-
             $emailCheck=validateOnMail($email);
-            var_dump($emailCheck);
             if($emailCheck==$email)
             {
                 if ($password==$confirmPassword)
@@ -23,8 +21,13 @@ if(!$postErrorsOld["errors"])
                 
                     write2file('users.txt',$data);
 
-                    // header("Location: logIn.php");
 
+                    if(!$file_errors)
+                    {
+                        move_uploaded_file($img['tmp_name'], "image/" . $img['name']);
+                        header("Location: logIn.php");                  
+                    }
+                    
 
                 }
                 else 
@@ -53,5 +56,6 @@ else
     header($url);
 
 }
+
 
 ?>

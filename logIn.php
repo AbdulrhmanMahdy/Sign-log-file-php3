@@ -20,8 +20,11 @@ require "utils.php";
 </head>
 
 <body>
-    <h2 class="fs-1 text-danger  fw-semibold">Log-In</h2>
-    <form action="" method="">
+    <h1 class="text-center text-black-50 fw-bold display-2">Cafeteria</h1>
+
+    <h2 class="fs-4 text-danger  fw-semibold">Log-In</h2>
+
+    <form action="welcome.php" method="post">
         <label class="fs-5  fst-italic" for="email">Email:</label>
         <input class="form-control" type="email" name="email">
 

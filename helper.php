@@ -18,7 +18,22 @@ function validatePostedData($postValues) {
 
    
 }
+function validateOnfile($file,$fileExtainsion,$size){
+$fileSize=(int)$file['size'];
+$fileExt = explode(".", $file['name']); // Split filename by "."
+$fileExt=strtolower(end($fileExt));
 
+$errors=[];
+    if ($fileSize > $size)
+    {        
+        $errors["size"]=" Size = $size is to big ";
+    }
+    if (!in_array($fileExt,$fileExtainsion))
+    {
+        $errors["fileExt"]=" Extantion  is not Allowed ";
+    }
+    return $errors;
+}
 function write2file($file,$data) {
     $fileHandle=fopen($file,'a');
     if ($fileHandle) {
