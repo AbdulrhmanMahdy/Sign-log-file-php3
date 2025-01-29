@@ -13,21 +13,35 @@ if(!$postErrorsOld["errors"])
             $room = $_POST['room'];
             $data = "{$name}:{$email}:{$password}:{$confirmPassword}:{$room}\n";
 
-            if ($password!=$confirmPassword)
-            {
-                
 
-                $url=$url."?passwd= Password Dosn't Match";
+            $emailCheck=validateOnMail($email);
+            var_dump($emailCheck);
+            if($emailCheck==$email)
+            {
+                if ($password==$confirmPassword)
+                {
+                
+                    write2file('users.txt',$data);
+
+                    // header("Location: logIn.php");
+
+
+                }
+                else 
+                {
+
+                    $url=$url."?passwd= Password Dosn't Match";
+                    header($url);
+
+                }
+            }
+            else
+            {
+                $url=$url."?email= please enter right email";
                 header($url);
 
             }
-            else 
-            {
-                write2file('users.txt',$data);
-                header("Location: logIn.php");
-
-            }
-
+            
 }
 else
 {

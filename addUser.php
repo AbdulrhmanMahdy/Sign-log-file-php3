@@ -11,6 +11,10 @@ if (isset($_GET['old'])) {
 if (isset($_GET['passwd'])) {
     $passwd = $_GET['passwd'];
 }
+
+if (isset($_GET['email'])) {
+    $email = $_GET['email'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +42,7 @@ if (isset($_GET['passwd'])) {
         <label for="email">Email:</label>
         <input class="form-control" value="<?php echo $old['email'] ?? '' ?>" type="text" name="email">
         <p class="text-danger"> <?php echo $errors['email'] ?? '' ?> </p>
+        <p class="text-danger"> <?php echo $email ?? '' ?> </p>
 
         <label for="password">Password:</label>
         <input class="form-control" value="<?php echo $old['password'] ?? '' ?>" type="password" name="password">
@@ -49,13 +54,13 @@ if (isset($_GET['passwd'])) {
         <p class="text-danger"> <?php echo $errors['confirmPassword'] ?? '' ?> </p>
         <p class="text-danger"> <?php echo $passwd ?? '' ?> </p>
 
-        <!-- 
+
         <label for="room">Room Number:</label>
         <select class="" name="room">
             <option value="Application1">Application1</option>
             <option value="Application2">Application2</option>
             <option value="Cloud">Cloud</option>
-        </select><br><br> -->
+        </select><br><br>
 
         <label for="profile_picture">Profile Picture:</label>
         <input class="form-control" type="file" name="image" accept="image/*">

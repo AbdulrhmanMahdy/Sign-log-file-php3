@@ -28,4 +28,12 @@ function write2file($file,$data) {
         
 }
 
+function validateOnMail($mail)
+{
+
+    return filter_var($mail,FILTER_VALIDATE_EMAIL);
+
+
+}
+
 ?>
